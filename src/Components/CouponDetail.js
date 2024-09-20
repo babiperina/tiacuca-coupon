@@ -47,9 +47,9 @@ function CouponDetail() {
         </div>
         <div style={styles.upContainer}>
           <div style={styles.discountInfo}>
-            <p>Você ganhou</p>
+            <p style={styles.rulesInfoP}>Você ganhou</p>
             <span style={styles.discountSpanStyle}>10%</span>
-            <p>de desconto!</p>
+            <p style={styles.rulesInfoP}>de desconto!</p>
           </div>
           <div style={styles.couponSection}>
             <span style={styles.couponLabel}>Código do Cupom</span>
@@ -59,13 +59,13 @@ function CouponDetail() {
             </div>
           </div>
           <div style={styles.rulesInfo}>
-            <p>
+            <p style={styles.rulesInfoP}>
               Este cupom é válido apenas para os pedidos feitos pelo WhatsApp.
             </p>
-            <p>
+            <p style={styles.rulesInfoP}>
               Este cupom é válido até <strong>{new Date(coupon.expiration_date).toLocaleDateString()}</strong>.
             </p>
-            <p>
+            <p style={styles.rulesInfoP}>
               Este cupom só poderá ser utilizado uma vez.
             </p>
           </div>
@@ -120,21 +120,24 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
+    padding: '20px 0 0 0',
+    color: '#4B1011',
     fontSize: '1.25rem', // Aproximadamente 20px, mas escalável
   },
   discountSpanStyle: {
-    fontSize: '4.5rem', // Aproximadamente 72px, mas escalável
+    fontSize: '5rem', // Aproximadamente 72px, mas escalável
     fontWeight: 'bold',
     color: '#FA5528',
     lineHeight: '1', // Ajuste de altura da linha para que o número não fique muito espaçado
   },
 
-    
   couponSection: {
     marginTop: '20px',
   },
   couponLabel: {
     fontWeight: 'bold',
+    fontSize: '14px',
+    color: '#4B1011',
   },
   couponCodeContainer: {
     display: 'flex',
@@ -171,8 +174,14 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'self-start',
-    padding: '0 10px',
+    padding: '20px 10px 10px 10px',
   },
+
+  rulesInfoP: {
+    margin: 0,
+    color: '#4B1011',
+  },
+
 
   downContainer: {
     backgroundColor: '#FFF2E2',
@@ -191,6 +200,7 @@ const styles = {
     textAlign: 'center',
     fontWeight: 'bold',
     width: '90%',
+    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
   },
 };
 
