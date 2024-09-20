@@ -11,7 +11,7 @@ function App() {
         <Route path="/" element={<Home />} /> */}
 
         {/* Página de um cupom específico */}
-        <Route path="/coupon/:couponCode" element={<CouponDetail />} />
+        <Route path="/cupom-da-muvuka/:couponCode" element={<CouponDetail />} />
       </Routes>
     </div>
   );
