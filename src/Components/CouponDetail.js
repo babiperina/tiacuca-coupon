@@ -47,7 +47,7 @@ function CouponDetail() {
         </div>
         <div style={styles.upContainer}>
           <div style={styles.discountInfo}>
-            <p style={styles.rulesInfoP}>Você ganhou</p>
+            <p style={styles.rulesInfoP}>Tia Cuca te deu</p>
             <span style={styles.discountSpanStyle}>10%</span>
             <p style={styles.rulesInfoP}>de desconto!</p>
           </div>
