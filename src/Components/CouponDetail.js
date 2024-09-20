@@ -44,15 +44,21 @@ function CouponDetail() {
           <span style={styles.title}>TIA CUCA SOBREMESAS</span>
         </div>
         
-        <h2 style={styles.discount}>Você ganhou <strong>{coupon.discount}</strong> de desconto!</h2>
+        <div style={styles.mainContent}>
+          <h2 style={styles.discount}>Você ganhou <strong style={styles.discountPercentage}>{coupon.discount}</strong> de desconto!</h2>
 
-        <p style={styles.info}>
-          Este cupom é válido apenas para os pedidos feitos pelo WhatsApp.
-          <br />
-          Este cupom é válido até <strong>{new Date(coupon.expiration_date).toLocaleDateString()}</strong>.
-          <br />
-          Este cupom só poderá ser utilizado uma vez.
-        </p>
+          <div style={styles.rules}>
+            <p style={styles.info}>
+              Este cupom é válido apenas para os pedidos feitos pelo WhatsApp.
+            </p>
+            <p style={styles.info}>
+              Este cupom é válido até <strong>{new Date(coupon.expiration_date).toLocaleDateString()}</strong>.
+            </p>
+            <p style={styles.info}>
+              Este cupom só poderá ser utilizado uma vez.
+            </p>
+          </div>
+        </div>
 
         <div style={styles.couponSection}>
           <span style={styles.couponLabel}>Código do Cupom</span>
@@ -63,7 +69,7 @@ function CouponDetail() {
         </div>
 
         <a href="https://api.whatsapp.com/send?phone=SEU_NUMERO&text=Oi, quero usar o cupom!" style={styles.whatsappButton}>
-          WPP FAÇA SEU PEDIDO AGORA
+          FAÇA SEU PEDIDO AGORA
         </a>
       </div>
     </div>
@@ -82,7 +88,7 @@ const styles = {
     backgroundColor: '#FFD447',
     padding: '20px',
     borderRadius: '10px',
-    width: '350px',
+    width: '400px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     textAlign: 'center',
   },
@@ -94,15 +100,35 @@ const styles = {
   title: {
     fontWeight: 'bold',
   },
+  mainContent: {
+    display: 'flex',        // Ativa o layout flex
+    flexDirection: 'row',  
+    gap: '10px',  
+  },
+  rules: {
+    display: 'flex',        // Ativa o layout flex
+    flexDirection: 'column',  
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   discount: {
-    fontSize: '24px',
+    fontSize: '22px',
     color: '#333',
+    display: 'flex',
+    flexDirection: 'column',   // Garante que os elementos sejam empilhados em uma coluna
+    alignItems: 'flex-start',
+    minWidth: '140px',  // Define a largura mínima de 140px
+  },
+  discountPercentage:{
+    fontSize: '65px',
+    textAlign: 'center',
   },
   info: {
     fontSize: '14px',
     color: '#333',
-    margin: '10px 0',
-  },
+    margin: '10px 0',   // Garante que os elementos sejam empilhados em uma coluna
+    textAlign: 'left',  // Alinha os itens à esquerda
+  },  
   couponSection: {
     marginTop: '20px',
   },
@@ -130,7 +156,7 @@ const styles = {
     borderRadius: '5px',
     padding: '5px 10px',
     cursor: 'pointer',
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   whatsappButton: {
     display: 'inline-block',
@@ -139,6 +165,7 @@ const styles = {
     backgroundColor: '#38C857',
     color: '#fff',
     textDecoration: 'none',
+    width: '92%',
     borderRadius: '5px',
     fontWeight: 'bold',
   },
