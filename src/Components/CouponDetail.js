@@ -112,6 +112,7 @@ const styles = {
 
   h1Contact: {
     fontSize: '1rem', // Aproximadamente 20px, mas escalável
+    color: '#4B1011',
   },
   discountInfo: {
     display: 'flex',
@@ -140,8 +141,9 @@ const styles = {
     justifyContent: 'space-between',
     marginTop: '10px',
     backgroundColor: '#fff',
-    borderRadius: '5px',
-    padding: '5px',
+    borderRadius: '20px',
+    border: '1px solid #CDA300',
+    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
   },
   couponCodeInput: {
     border: 'none',
@@ -149,14 +151,19 @@ const styles = {
     width: '75%',
     textAlign: 'left',
     fontWeight: 'bold',
+    padding: '10px 20px',
+    borderRadius: '20px',
+    color: '#4B1011',
   },
   copyButton: {
-    backgroundColor: '#D3D3D3',
+    backgroundColor: '#FFCB00',
+    color: '#4B1011',
     border: 'none',
-    borderRadius: '5px',
+    borderRadius: '0 20px 20px 0',
     padding: '5px 10px',
     cursor: 'pointer',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    borderLeft: '1px solid #CDA300',
   },
 
   rulesInfo: {
@@ -164,6 +171,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'self-start',
+    padding: '0 10px',
   },
 
   downContainer: {
