@@ -7,8 +7,8 @@ function App() {
   return (
     <div>
       <Routes>
-        {/* Página inicial (exibe todos os cupons) */}
-        <Route path="/" element={<Home />} />
+        {/* Página inicial (exibe todos os cupons)
+        <Route path="/" element={<Home />} /> */}
 
         {/* Página de um cupom específico */}
         <Route path="/coupon/:couponCode" element={<CouponDetail />} />
