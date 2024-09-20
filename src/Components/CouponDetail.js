@@ -36,6 +36,22 @@ function CouponDetail() {
     alert('Código do cupom copiado!');
   };
 
+  // Função para retornar o estilo e o texto de acordo com o status do cupom
+  const getCouponStatus = (status) => {
+    switch (status) {
+      case 'active':
+        return { text: 'disponível', color: 'green', fontWeight: 'bold' };
+      case 'used':
+        return { text: 'utilizado', color: 'gray', fontWeight: 'bold'  };
+      case 'expired':
+        return { text: 'expirado', color: 'red', fontWeight: 'bold'  };
+      default:
+        return { text: 'indefinido', color: 'black', fontWeight: 'bold'  };
+    }
+  };
+
+  const couponStatus = getCouponStatus(coupon.status);
+
   return (
     <div style={styles.container}>
       <div style={styles.card}>
@@ -57,13 +73,17 @@ function CouponDetail() {
               <input type="text" value={coupon.coupon_code} readOnly style={styles.couponCodeInput} />
               <button onClick={handleCopy} style={styles.copyButton}>COPIAR</button>
             </div>
+            <div style={styles.couponStatus}>
+              este cupom encontra-se{' '}
+              <span style={{ color: couponStatus.color, fontWeight: couponStatus.fontWeight }}>{couponStatus.text}</span>           
+            </div>
           </div>
           <div style={styles.rulesInfo}>
             <p style={styles.rulesInfoP}>
               Este cupom é válido apenas para os pedidos feitos pelo WhatsApp.
             </p>
             <p style={styles.rulesInfoP}>
-              Este cupom é válido até <strong>{new Date(coupon.expiration_date).toLocaleDateString()}</strong>.
+              Este cupom é válido até <strong>{new Date(new Date(coupon.expiration_date).setDate(new Date(coupon.expiration_date).getDate() + 1)).toLocaleDateString()}</strong>.
             </p>
             <p style={styles.rulesInfoP}>
               Este cupom só poderá ser utilizado uma vez.
@@ -71,9 +91,10 @@ function CouponDetail() {
           </div>
         </div>
         <div style={styles.downContainer}>
-          <a href="https://api.whatsapp.com/send?phone=SEU_NUMERO&text=Oi, quero usar o cupom!" style={styles.whatsappButton}>
+          <a href={`https://api.whatsapp.com/send?phone=+5585997627499&text=Oi, eu estava na Muvuka e ganhei o cupom ${coupon.coupon_code}, que vale ${coupon.discount} de desconto! Gostaria de fazer um pedido!`} 
+            style={styles.whatsappButton} >
             PEÇA AGORA PELO WHATSAPP
-          </a>
+          </a>  
         </div>
       </div>
     </div>
@@ -167,6 +188,11 @@ const styles = {
     cursor: 'pointer',
     fontWeight: 'bold',
     borderLeft: '1px solid #CDA300',
+  },
+
+  couponStatus:{
+    marginTop: '5px',
+    fontSize: '0.7rem',
   },
 
   rulesInfo: {
