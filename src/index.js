@@ -1,17 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';  // Importa a nova API do React 18
+import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom'; // Substituir por HashRouter
 
-// Cria a raiz para renderizar o aplicativo com a nova API do React 18
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
-// Renderiza o aplicativo
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <App />
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 );
