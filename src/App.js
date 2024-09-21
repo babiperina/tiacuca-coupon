@@ -5,6 +5,7 @@ import CouponManager from './Components/CouponManager';
 import Login from './Components/Login';
 import Register from './Components/Register';
 import PrivateRoute from './Components/PrivateRoute';
+import CouponDetail from './Components/CouponDetail';
 import { AuthProvider } from './Components/AuthContext';
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
         {/* Rota protegida */}
         <Route path="/coupons" element={<PrivateRoute><CouponManager /></PrivateRoute>} />
         
+        {/* Página de um cupom específico */}
+        <Route path="/cupom-da-muvuka/:couponCode" element={<CouponDetail />} />
         {/* Outras rotas podem ser adicionadas aqui */}
       </Routes>
     </AuthProvider>
