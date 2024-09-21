@@ -252,7 +252,7 @@ const styles = {
     borderRadius: '50px',
     textAlign: 'center',
     fontWeight: 'bold',
-    width: '100%',
+    width: '90%',
     boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
   },
 };
