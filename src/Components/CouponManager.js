@@ -161,7 +161,7 @@ function CouponManager() {
 
   const handleLogout = () => {
     localStorage.removeItem('token'); // Remove o token de autenticação
-    window.location.href = '/login'; // Redireciona para a página de login
+    window.location.href = '/'; // Redireciona para a página de login
   };
 
   if (loading) {
