@@ -15,7 +15,7 @@ function App() {
         <Route path="/register" element={<Register />} />
 
         {/* Rota pública para login */}
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
 
         {/* Rota protegida */}
         <Route path="/coupons" element={<PrivateRoute><CouponManager /></PrivateRoute>} />

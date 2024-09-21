@@ -55,14 +55,21 @@ function CouponManager() {
 
   // Função para usar o cupom com a API fornecida
   const handleUseCoupon = async (coupon_code) => {
+    const authToken = localStorage.getItem('token'); // Substitua pelo seu token de autenticação
+
     try {
-      const response = await axios.post('https://tiacuca-discount.onrender.com/api/coupons/use', {
-        coupon_code: coupon_code,
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await axios.post(
+        'https://tiacuca-discount.onrender.com/api/coupons/use',
+        {
+          coupon_code: coupon_code, // Este é o corpo (payload) da requisição
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`, // Passando o token no cabeçalho
+            'Content-Type': 'application/json', // Cabeçalho de conteúdo JSON
+          },
         }
-      });
+      );
 
       if (response.status === 200) {
         setCoupons(coupons.map(coupon => 
@@ -78,14 +85,21 @@ function CouponManager() {
 
   // Função para liberar o cupom (marcar como ativo)
   const handleReleaseCoupon = async (coupon_code) => {
+    const authToken = localStorage.getItem('token'); // Substitua pelo seu token de autenticação
+
     try {
-      const response = await axios.post('https://tiacuca-discount.onrender.com/api/coupons/active', {
-        coupon_code: coupon_code,
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await axios.post(
+        'https://tiacuca-discount.onrender.com/api/coupons/active',
+        {
+          coupon_code: coupon_code, // Este é o corpo (payload) da requisição
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`, // Passando o token no cabeçalho
+            'Content-Type': 'application/json', // Cabeçalho de conteúdo JSON
+          },
         }
-      });
+      );
 
       if (response.status === 200) {
         setCoupons(coupons.map(coupon => 
