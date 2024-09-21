@@ -47,6 +47,52 @@ function Home() {
     }
   };
 
+  // Função para usar o cupom com a API fornecida
+  const handleUseCoupon = async (coupon_code) => {
+    try {
+      const response = await axios.post('http://localhost:5001/api/coupons/use', {
+        coupon_code: coupon_code,
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+
+      if (response.status === 200) {
+        setCoupons(coupons.map(coupon => 
+          coupon.coupon_code === coupon_code ? { ...coupon, status: 'used' } : coupon
+        ));
+      } else {
+        console.error('Erro ao usar o cupom:', response);
+      }
+    } catch (error) {
+      console.error('Erro ao usar o cupom:', error);
+    }
+  };
+
+  // Função para liberar o cupom (marcar como ativo)
+  const handleReleaseCoupon = async (coupon_code) => {
+    try {
+      const response = await axios.post('http://localhost:5001/api/coupons/active', {
+        coupon_code: coupon_code,
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+
+      if (response.status === 200) {
+        setCoupons(coupons.map(coupon => 
+          coupon.coupon_code === coupon_code ? { ...coupon, status: 'active' } : coupon
+        ));
+      } else {
+        console.error('Erro ao ativar o cupom:', response);
+      }
+    } catch (error) {
+      console.error('Erro ao ativar o cupom:', error);
+    }
+  };
+
   // Função para ordenar e filtrar os cupons
   const sortedCoupons = React.useMemo(() => {
     let sortableCoupons = [...coupons];
@@ -164,13 +210,23 @@ function Home() {
           <tbody>
             {currentCoupons.map((coupon, index) => (
               <tr key={coupon.coupon_code} style={index % 2 === 0 ? styles.rowEven : styles.rowOdd}>
-                <td style={styles.tableData}>{coupon.coupon_code}</td>
+                <td style={styles.tableData}>
+                  <Link to={`/cupom-da-muvuka/${coupon.coupon_code}`} style={styles.link}>
+                    {coupon.coupon_code}
+                  </Link>
+                </td>
                 <td style={styles.tableData}>{coupon.discount}</td>
                 <td style={styles.tableData}>{getStatusLabel(coupon.status)}</td>
                 <td style={styles.tableData}>
-                  <Link to={`/cupom-da-muvuka/${coupon.coupon_code}`} style={styles.link}>
-                    Ver Cupom
-                  </Link>
+                  {coupon.status === 'active' ? (
+                    <button style={styles.actionButton} onClick={() => handleUseCoupon(coupon.coupon_code)}>
+                      Usar Cupom
+                    </button>
+                  ) : (
+                    <button style={styles.actionButton} onClick={() => handleReleaseCoupon(coupon.coupon_code)}>
+                      Liberar Cupom
+                    </button>
+                  )}
                 </td>
               </tr>
             ))}
@@ -309,6 +365,14 @@ const styles = {
     borderRadius: '5px',
     cursor: 'pointer',
     backgroundColor: '#FFF',
+  },
+  actionButton: {
+    padding: '5px 10px',
+    borderRadius: '5px',
+    backgroundColor: '#4CAF50',
+    color: '#FFF',
+    border: 'none',
+    cursor: 'pointer',
   },
 };
 
