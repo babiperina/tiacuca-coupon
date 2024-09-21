@@ -10,7 +10,7 @@ function CouponDetail() {
   useEffect(() => {
     const fetchCoupon = async () => {
       try {
-        const response = await axios.get(`https://tiacuca-discount.onrender.com/api/coupons/${couponCode}`);
+        const response = await axios.get(`https://tiacuca-discount.onrender.com/api/public-coupons/${couponCode}`);
         setCoupon(response.data);
         setLoading(false);
       } catch (error) {
