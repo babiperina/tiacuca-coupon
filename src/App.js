@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Home from './Components/Home.js';
+import CouponManager from './Components/CouponManager.js';
 import CouponDetail from './Components/CouponDetail.js';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <div>
       <Routes>
         {/* Página inicial (exibe todos os cupons)
-        <Route path="/" element={<Home />} /> */}
+        <Route path="/" element={<CouponManager />} /> */}
 
         {/* Página de um cupom específico */}
         <Route path="/cupom-da-muvuka/:couponCode" element={<CouponDetail />} />

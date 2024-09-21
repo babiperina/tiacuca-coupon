@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-function Home() {
+function CouponManager() {
   const [coupons, setCoupons] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -376,4 +376,4 @@ const styles = {
   },
 };
 
-export default Home;
+export default CouponManager;
