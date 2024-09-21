@@ -1,19 +1,27 @@
+// App.js
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import CouponManager from './Components/CouponManager.js';
-import CouponDetail from './Components/CouponDetail.js';
-
+import { Route, Routes } from 'react-router-dom'; // Sem BrowserRouter aqui
+import CouponManager from './Components/CouponManager';
+import Login from './Components/Login';
+import Register from './Components/Register';
+import PrivateRoute from './Components/PrivateRoute';
+import { AuthProvider } from './Components/AuthContext';
 function App() {
   return (
-    <div>
+    <AuthProvider>
       <Routes>
-        {/* Página inicial (exibe todos os cupons)
-        <Route path="/" element={<CouponManager />} /> */}
+        {/* Rota pública para registro */}
+        <Route path="/register" element={<Register />} />
 
-        {/* Página de um cupom específico */}
-        <Route path="/cupom-da-muvuka/:couponCode" element={<CouponDetail />} />
+        {/* Rota pública para login */}
+        <Route path="/login" element={<Login />} />
+
+        {/* Rota protegida */}
+        <Route path="/coupons" element={<PrivateRoute><CouponManager /></PrivateRoute>} />
+        
+        {/* Outras rotas podem ser adicionadas aqui */}
       </Routes>
-    </div>
+    </AuthProvider>
   );
 }
 
