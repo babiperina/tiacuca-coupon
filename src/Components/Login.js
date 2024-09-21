@@ -38,6 +38,21 @@ const Login = () => {
   return (
     <div className="auth-container">
       <div>
+      <h2>Confira seu Cupom</h2>
+      {/* Formulário de verificação de cupom */}
+      <div className="coupon-check-container">
+        <form onSubmit={handleCouponCheck} className="coupon-form">
+          <input
+            type="text"
+            placeholder="Insira o código do cupom"
+            value={couponCode}
+            onChange={(e) => setCouponCode(e.target.value)}
+            className="auth-input"
+          />
+          <button type="submit" className="auth-button">Verificar Cupom</button>
+        </form>
+      </div>
+      <div>
       <h2>Login</h2>
       <form onSubmit={handleLogin} className="auth-form">
         <input
@@ -61,22 +76,6 @@ const Login = () => {
       <p className="auth-link">
         Não tem uma conta? <Link to="/register">Registrar</Link>
       </p>
-      </div>
-
-      <div>
-      <h2>Confira seu Cupom</h2>
-      {/* Formulário de verificação de cupom */}
-      <div className="coupon-check-container">
-        <form onSubmit={handleCouponCheck} className="coupon-form">
-          <input
-            type="text"
-            placeholder="Insira o código do cupom"
-            value={couponCode}
-            onChange={(e) => setCouponCode(e.target.value)}
-            className="auth-input"
-          />
-          <button type="submit" className="auth-button">Verificar Cupom</button>
-        </form>
       </div>
       </div>
     </div>
