@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/tiacuca-coupon/static/css/main.1c80eb4d.css",
-    "main.js": "/tiacuca-coupon/static/js/main.7f87d6f9.js",
+    "main.js": "/tiacuca-coupon/static/js/main.a243d14f.js",
     "index.html": "/tiacuca-coupon/index.html",
     "main.1c80eb4d.css.map": "/tiacuca-coupon/static/css/main.1c80eb4d.css.map",
-    "main.7f87d6f9.js.map": "/tiacuca-coupon/static/js/main.7f87d6f9.js.map"
+    "main.a243d14f.js.map": "/tiacuca-coupon/static/js/main.a243d14f.js.map"
   },
   "entrypoints": [
     "static/css/main.1c80eb4d.css",
-    "static/js/main.7f87d6f9.js"
+    "static/js/main.a243d14f.js"
   ]
 }
