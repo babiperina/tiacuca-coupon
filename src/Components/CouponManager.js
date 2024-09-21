@@ -159,6 +159,11 @@ function CouponManager() {
     setSortConfig({ key, direction });
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('token'); // Remove o token de autenticação
+    window.location.href = '/login'; // Redireciona para a página de login
+  };
+
   if (loading) {
     return <div>Carregando cupons...</div>;
   }
@@ -166,7 +171,10 @@ function CouponManager() {
   return (
     <div style={styles.container}>
       <div style={styles.card}>
-        <h1 style={styles.title}>Lista de Cupons</h1>
+        <div style={styles.header}>
+          <h1 style={styles.title}>Lista de Cupons</h1>
+          <button style={styles.logoutButton} onClick={handleLogout}>Logout</button>
+        </div>
         <div style={styles.couponCount}>Total de Cupons: {coupons.length}</div>
 
         {/* Filtros */}
@@ -284,11 +292,24 @@ const styles = {
     width: '100%',
     maxWidth: '800px',
   },
+  header: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: '20px',
+  },
   title: {
     textAlign: 'center',
     fontSize: '24px',
-    marginBottom: '20px',
     color: '#333',
+  },
+  logoutButton: {
+    padding: '10px 15px',
+    borderRadius: '5px',
+    backgroundColor: '#FF4C4C',
+    color: '#FFF',
+    border: 'none',
+    cursor: 'pointer',
   },
   couponCount: {
     textAlign: 'right',
