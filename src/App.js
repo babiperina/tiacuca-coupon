@@ -18,7 +18,7 @@ function App() {
         <Route path="/login" element={<Login />} />
 
         {/* Rota protegida */}
-        <Route path="/public-coupons" element={<PrivateRoute><CouponManager /></PrivateRoute>} />
+        <Route path="/coupons" element={<PrivateRoute><CouponManager /></PrivateRoute>} />
         
         {/* Página de um cupom específico */}
         <Route path="/cupom-da-muvuka/:couponCode" element={<CouponDetail />} />
