@@ -165,7 +165,11 @@ function CouponManager() {
   };
 
   if (loading) {
-    return <div>Carregando cupons...</div>;
+    return (
+      <div style={styles.loadingContainer}>
+        <div style={styles.spinner}></div>
+      </div>
+    );
   }
 
   return (
@@ -390,6 +394,26 @@ const styles = {
     color: '#643528',  // Marrom claro  
     textDecoration: 'none',
     fontWeight: 'bold',
+  },
+  loadingContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+  },
+
+  spinner: {
+    border: '16px solid #f3f3f3', /* Light grey */
+    borderRadius: '50%',
+    borderTop: '16px solid #3498db', /* Blue */
+    width: '120px',
+    height: '120px',
+    animation: 'spin 2s linear infinite',
+  },
+
+  '@keyframes spin': {
+    '0%': { transform: 'rotate(0deg)' },
+    '100%': { transform: 'rotate(360deg)' },
   },
 };
 

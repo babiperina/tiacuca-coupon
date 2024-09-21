@@ -23,7 +23,11 @@ function CouponDetail() {
   }, [couponCode]);
 
   if (loading) {
-    return <div>Carregando detalhes do cupom...</div>;
+    return (
+      <div style={styles.loadingContainer}>
+        <div style={styles.spinner}></div>
+      </div>
+    );
   }
 
   if (!coupon) {
@@ -100,6 +104,7 @@ function CouponDetail() {
     </div>
   );
 }
+
 const styles = {
   container: {
     display: 'flex',
@@ -110,12 +115,33 @@ const styles = {
     padding: '10px',
   },
 
+  loadingContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+  },
+
+  spinner: {
+    border: '16px solid #f3f3f3', /* Light grey */
+    borderRadius: '50%',
+    borderTop: '16px solid #3498db', /* Blue */
+    width: '120px',
+    height: '120px',
+    animation: 'spin 2s linear infinite',
+  },
+
+  '@keyframes spin': {
+    '0%': { transform: 'rotate(0deg)' },
+    '100%': { transform: 'rotate(360deg)' },
+  },
+
   card: {
     backgroundColor: '#FFD447',
     padding: '10px',
     borderRadius: '10px',
     width: '100%',
-    maxWidth: '400px', // Para não ultrapassar essa largura em telas maiores
+    maxWidth: '400px', 
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     textAlign: 'center',
   },
@@ -125,7 +151,7 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '0 10px 0 10px',
-    fontSize: '0.9rem', // Ajusta o tamanho da fonte para dispositivos móveis
+    fontSize: '0.9rem', 
   },
 
   upContainer: {
@@ -134,7 +160,7 @@ const styles = {
   },
 
   h1Contact: {
-    fontSize: '1rem', // Aproximadamente 20px, mas escalável
+    fontSize: '1rem',
     color: '#4B1011',
   },
   discountInfo: {
@@ -145,13 +171,13 @@ const styles = {
     textAlign: 'center',
     padding: '20px 0 0 0',
     color: '#4B1011',
-    fontSize: '1.25rem', // Aproximadamente 20px, mas escalável
+    fontSize: '1.25rem',
   },
   discountSpanStyle: {
-    fontSize: '4rem', // Reduzido para mobile, mas ainda grande
+    fontSize: '4rem',
     fontWeight: 'bold',
     color: '#FA5528',
-    lineHeight: '1', // Ajuste de altura da linha para que o número não fique muito espaçado
+    lineHeight: '1',
   },
 
   couponSection: {
@@ -219,47 +245,15 @@ const styles = {
   whatsappButton: {
     display: 'inline-block',
     marginTop: '20px',
-    padding: '15px 10px', // Reduzido para melhor ajuste em mobile
+    padding: '15px 10px',
     backgroundColor: '#1FBC59',
     color: '#fff',
     textDecoration: 'none',
     borderRadius: '50px',
     textAlign: 'center',
     fontWeight: 'bold',
-    width: '100%', // Ocupará toda a largura em dispositivos móveis
+    width: '100%',
     boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.2)',
-  },
-
-  // Adicionando media queries para ajustar ainda mais o layout em telas pequenas
-  '@media (max-width: 768px)': {
-    discountSpanStyle: {
-      fontSize: '3rem', // Reduz ainda mais para telas menores
-    },
-    whatsappButton: {
-      padding: '10px', // Reduz o tamanho do botão em mobile
-    },
-    contactInfo: {
-      flexDirection: 'column', // Alinhar contatos verticalmente em mobile
-      fontSize: '0.8rem',
-    },
-  },
-
-  '@media (max-width: 480px)': {
-    card: {
-      width: '90%', // Ocupar a maior parte da tela em dispositivos muito pequenos
-    },
-    discountSpanStyle: {
-      fontSize: '2.5rem', // Ajuste para dispositivos muito pequenos
-    },
-    couponCodeInput: {
-      fontSize: '14px', // Tamanho de fonte menor para inputs em mobile
-    },
-    couponLabel: {
-      fontSize: '12px', // Ajuste para telas muito pequenas
-    },
-    whatsappButton: {
-      padding: '10px', // Ajustar o botão para telas muito pequenas
-    },
   },
 };
 
