@@ -291,22 +291,22 @@ function Pagination({ itemsPerPage, totalItems, paginate, currentPage }) {
     </nav>
   );
 }
-
 const styles = {
   container: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     minHeight: '100vh',
-    paddingTop: '50px',
+    padding: '20px',
   },
   card: {
     backgroundColor: '#F4F4F9',
     padding: '20px',
     borderRadius: '10px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    width: '80%',
+    width: '100%',
     maxWidth: '800px',
+    overflowX: 'auto', // Para garantir que a tabela tenha scroll horizontal em telas pequenas
   },
   title: {
     textAlign: 'center',
@@ -323,20 +323,23 @@ const styles = {
   filterContainer: {
     display: 'flex',
     justifyContent: 'space-between',
-    marginBottom: '20px',
+    flexWrap: 'wrap', // Permitir que os filtros fiquem em várias linhas em telas pequenas
     gap: '10px',
+    marginBottom: '20px',
   },
   filterInput: {
     flex: '1',
     padding: '10px',
     borderRadius: '5px',
     border: '1px solid #ccc',
+    minWidth: '150px', // Tamanho mínimo para não colapsar em telas menores
   },
   filterSelect: {
     flex: '0 0 200px', // Largura fixa para o select
     padding: '10px',
     borderRadius: '5px',
     border: '1px solid #ccc',
+    minWidth: '150px',
   },
   table: {
     width: '100%',
@@ -393,6 +396,45 @@ const styles = {
     color: '#FFF',
     border: 'none',
     cursor: 'pointer',
+  },
+
+  // Media Queries para responsividade
+  '@media (max-width: 768px)': {
+    title: {
+      fontSize: '20px', // Ajuste de tamanho da fonte
+    },
+    filterContainer: {
+      flexDirection: 'column', // Coloca os filtros em coluna para melhor ajuste
+      gap: '10px',
+    },
+    filterInput: {
+      width: '100%', // Largura total em telas menores
+    },
+    filterSelect: {
+      width: '100%', // Largura total em telas menores
+    },
+    tableHeader: {
+      fontSize: '14px', // Reduz o tamanho do texto do cabeçalho da tabela
+    },
+    tableData: {
+      fontSize: '12px', // Reduz o tamanho do texto dos dados da tabela
+    },
+  },
+
+  '@media (max-width: 480px)': {
+    card: {
+      padding: '10px', // Reduz o padding em dispositivos menores
+    },
+    tableHeader: {
+      fontSize: '12px', // Ajuste adicional para telas muito pequenas
+    },
+    tableData: {
+      fontSize: '10px', // Ajuste adicional para telas muito pequenas
+    },
+    actionButton: {
+      fontSize: '12px', // Reduz o tamanho do botão
+      padding: '3px 5px', // Reduz o padding do botão
+    },
   },
 };
 
