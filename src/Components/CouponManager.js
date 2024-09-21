@@ -14,8 +14,14 @@ function CouponManager() {
 
   useEffect(() => {
     const fetchCoupons = async () => {
+      const authToken = localStorage.getItem('token'); // Substitua pelo seu token de autenticação
+
       try {
-        const response = await axios.get('https://tiacuca-discount.onrender.com/api/coupons');
+        const response = await axios.get('https://tiacuca-discount.onrender.com/api/coupons', {
+          headers: {
+            Authorization: `Bearer ${authToken}`, // Passando o token no cabeçalho
+          },
+        });
         setCoupons(response.data);
         setLoading(false);
       } catch (error) {
@@ -50,7 +56,7 @@ function CouponManager() {
   // Função para usar o cupom com a API fornecida
   const handleUseCoupon = async (coupon_code) => {
     try {
-      const response = await axios.post('http://localhost:5001/api/coupons/use', {
+      const response = await axios.post('https://tiacuca-discount.onrender.com/api/coupons/use', {
         coupon_code: coupon_code,
       }, {
         headers: {
@@ -73,7 +79,7 @@ function CouponManager() {
   // Função para liberar o cupom (marcar como ativo)
   const handleReleaseCoupon = async (coupon_code) => {
     try {
-      const response = await axios.post('http://localhost:5001/api/coupons/active', {
+      const response = await axios.post('https://tiacuca-discount.onrender.com/api/coupons/active', {
         coupon_code: coupon_code,
       }, {
         headers: {
