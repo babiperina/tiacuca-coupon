@@ -10,7 +10,7 @@ function CouponManager() {
   const [filter, setFilter] = useState('');
   const [statusFilter, setStatusFilter] = useState('all'); // Default is 'all'
   const [discountFilter, setDiscountFilter] = useState('all');
-  const itemsPerPage = 20;
+  const itemsPerPage = 21;
 
   useEffect(() => {
     const fetchCoupons = async () => {
@@ -33,40 +33,37 @@ function CouponManager() {
     fetchCoupons();
   }, []);
 
-  // Função para obter os valores únicos de desconto para o select
   const getUniqueDiscounts = () => {
     const discounts = coupons.map(coupon => coupon.discount);
     return ['all', ...new Set(discounts)]; // Adiciona 'all' como opção padrão
   };
 
-  // Função para converter o status do cupom
   const getStatusLabel = (status) => {
     switch (status) {
       case 'active':
-        return 'Ativo';
+        return { label: 'Disponível', color: '#4CAF50' }; // Verde
       case 'used':
-        return 'Usado';
+        return { label: 'Utilizado', color: '#808080' }; // Cinza
       case 'expired':
-        return 'Expirado';
+        return { label: 'Expirado', color: '#FF4C4C' }; // Vermelho
       default:
-        return 'Indefinido';
+        return { label: 'Indefinido', color: '#000000' }; // Preto para indefinido
     }
   };
 
-  // Função para usar o cupom com a API fornecida
   const handleUseCoupon = async (coupon_code) => {
-    const authToken = localStorage.getItem('token'); // Substitua pelo seu token de autenticação
+    const authToken = localStorage.getItem('token'); 
 
     try {
       const response = await axios.post(
         'https://tiacuca-discount.onrender.com/api/coupons/use',
         {
-          coupon_code: coupon_code, // Este é o corpo (payload) da requisição
+          coupon_code: coupon_code, 
         },
         {
           headers: {
-            Authorization: `Bearer ${authToken}`, // Passando o token no cabeçalho
-            'Content-Type': 'application/json', // Cabeçalho de conteúdo JSON
+            Authorization: `Bearer ${authToken}`,
+            'Content-Type': 'application/json',
           },
         }
       );
@@ -83,20 +80,19 @@ function CouponManager() {
     }
   };
 
-  // Função para liberar o cupom (marcar como ativo)
   const handleReleaseCoupon = async (coupon_code) => {
-    const authToken = localStorage.getItem('token'); // Substitua pelo seu token de autenticação
+    const authToken = localStorage.getItem('token');
 
     try {
       const response = await axios.post(
         'https://tiacuca-discount.onrender.com/api/coupons/active',
         {
-          coupon_code: coupon_code, // Este é o corpo (payload) da requisição
+          coupon_code: coupon_code,
         },
         {
           headers: {
-            Authorization: `Bearer ${authToken}`, // Passando o token no cabeçalho
-            'Content-Type': 'application/json', // Cabeçalho de conteúdo JSON
+            Authorization: `Bearer ${authToken}`,
+            'Content-Type': 'application/json',
           },
         }
       );
@@ -113,30 +109,25 @@ function CouponManager() {
     }
   };
 
-  // Função para ordenar e filtrar os cupons
   const sortedCoupons = React.useMemo(() => {
     let sortableCoupons = [...coupons];
 
-    // Filtro por status
     if (statusFilter !== 'all') {
       sortableCoupons = sortableCoupons.filter(coupon => coupon.status === statusFilter);
     }
 
-    // Filtro por código do cupom
     if (filter) {
       sortableCoupons = sortableCoupons.filter(coupon =>
         coupon.coupon_code.toLowerCase().includes(filter.toLowerCase())
       );
     }
 
-    // Filtro por desconto
     if (discountFilter !== 'all') {
       sortableCoupons = sortableCoupons.filter(coupon => 
         coupon.discount.toString() === discountFilter
       );
     }
 
-    // Ordenação
     if (sortConfig !== null) {
       sortableCoupons.sort((a, b) => {
         const aValue = a[sortConfig.key];
@@ -178,7 +169,7 @@ function CouponManager() {
         <h1 style={styles.title}>Lista de Cupons</h1>
         <div style={styles.couponCount}>Total de Cupons: {coupons.length}</div>
 
-        {/* Filtros organizados em uma linha */}
+        {/* Filtros */}
         <div style={styles.filterContainer}>
           <input 
             type="text" 
@@ -212,46 +203,31 @@ function CouponManager() {
           </select>
         </div>
 
-        <table style={styles.table}>
-          <thead>
-            <tr>
-              <th style={styles.tableHeader} onClick={() => requestSort('coupon_code')}>
-                Código do Cupom {sortConfig.key === 'coupon_code' && (sortConfig.direction === 'ascending' ? '▲' : '▼')}
-              </th>
-              <th style={styles.tableHeader} onClick={() => requestSort('discount')}>
-                Desconto {sortConfig.key === 'discount' && (sortConfig.direction === 'ascending' ? '▲' : '▼')}
-              </th>
-              <th style={styles.tableHeader} onClick={() => requestSort('status')}>
-                Status {sortConfig.key === 'status' && (sortConfig.direction === 'ascending' ? '▲' : '▼')}
-              </th>
-              <th style={styles.tableHeader}>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentCoupons.map((coupon, index) => (
-              <tr key={coupon.coupon_code} style={index % 2 === 0 ? styles.rowEven : styles.rowOdd}>
-                <td style={styles.tableData}>
-                  <Link to={`/cupom-da-muvuka/${coupon.coupon_code}`} style={styles.link}>
-                    {coupon.coupon_code}
-                  </Link>
-                </td>
-                <td style={styles.tableData}>{coupon.discount}</td>
-                <td style={styles.tableData}>{getStatusLabel(coupon.status)}</td>
-                <td style={styles.tableData}>
-                  {coupon.status === 'active' ? (
-                    <button style={styles.actionButton} onClick={() => handleUseCoupon(coupon.coupon_code)}>
-                      Usar Cupom
-                    </button>
-                  ) : (
-                    <button style={styles.actionButton} onClick={() => handleReleaseCoupon(coupon.coupon_code)}>
-                      Liberar Cupom
-                    </button>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        {/* Exibição dos cupons como cards */}
+        <div style={styles.cardGrid}>
+          {currentCoupons.map((coupon) => (
+            <div key={coupon.coupon_code} style={styles.couponCard}>
+              <h3 style={styles.couponCode}>
+                <Link to={`/cupom-da-muvuka/${coupon.coupon_code}`} style={styles.link}>
+                  {coupon.coupon_code}
+                </Link>
+              </h3>
+              <p style={styles.couponDetail}><strong>{coupon.discount}</strong> de desconto.</p>
+              <p style={{ ...styles.couponDetail, color: getStatusLabel(coupon.status).color }}>
+                <strong>{getStatusLabel(coupon.status).label}</strong>
+              </p>              
+              {coupon.status === 'active' ? (
+                <button style={{ ...styles.actionButton, backgroundColor: '#FF4C4C' }} onClick={() => handleUseCoupon(coupon.coupon_code)}>
+                  Usar Cupom
+                </button>
+              ) : (
+                <button style={{ ...styles.actionButton, backgroundColor: '#007BFF' }} onClick={() => handleReleaseCoupon(coupon.coupon_code)}>
+                  Liberar Cupom
+                </button>
+              )}
+            </div>
+          ))}
+        </div>
         <Pagination
           itemsPerPage={itemsPerPage}
           totalItems={sortedCoupons.length}
@@ -279,7 +255,7 @@ function Pagination({ itemsPerPage, totalItems, paginate, currentPage }) {
               onClick={() => paginate(number)}
               style={{
                 ...styles.paginationButton,
-                backgroundColor: currentPage === number ? '#4CAF50' : '#FFF',
+                backgroundColor: currentPage === number ? '#643528' : '#FFF',
                 color: currentPage === number ? '#FFF' : '#000',
               }}
             >
@@ -291,6 +267,7 @@ function Pagination({ itemsPerPage, totalItems, paginate, currentPage }) {
     </nav>
   );
 }
+
 const styles = {
   container: {
     display: 'flex',
@@ -300,13 +277,12 @@ const styles = {
     padding: '20px',
   },
   card: {
-    backgroundColor: '#F4F4F9',
+    backgroundColor: '#fff2e2',
     padding: '20px',
     borderRadius: '10px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     width: '100%',
     maxWidth: '800px',
-    overflowX: 'auto', // Para garantir que a tabela tenha scroll horizontal em telas pequenas
   },
   title: {
     textAlign: 'center',
@@ -323,7 +299,7 @@ const styles = {
   filterContainer: {
     display: 'flex',
     justifyContent: 'space-between',
-    flexWrap: 'wrap', // Permitir que os filtros fiquem em várias linhas em telas pequenas
+    flexWrap: 'wrap',
     gap: '10px',
     marginBottom: '20px',
   },
@@ -332,43 +308,43 @@ const styles = {
     padding: '10px',
     borderRadius: '5px',
     border: '1px solid #ccc',
-    minWidth: '150px', // Tamanho mínimo para não colapsar em telas menores
+    minWidth: '150px',
   },
   filterSelect: {
-    flex: '0 0 200px', // Largura fixa para o select
+    flex: '0 0 200px',
     padding: '10px',
     borderRadius: '5px',
     border: '1px solid #ccc',
     minWidth: '150px',
   },
-  table: {
-    width: '100%',
-    borderCollapse: 'collapse',
+  cardGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+    gap: '20px',
   },
-  tableHeader: {
-    padding: '12px',
-    backgroundColor: '#4CAF50',
-    color: 'white',
-    textAlign: 'center',
-    fontWeight: 'bold',
-    cursor: 'pointer',
-  },
-  tableData: {
-    padding: '12px',
-    textAlign: 'center',
-    border: '1px solid #ddd',
-  },
-  rowEven: {
-    backgroundColor: '#F9F9F9',
-  },
-  rowOdd: {
+  couponCard: {
     backgroundColor: '#FFF',
+    padding: '15px',
+    borderRadius: '10px',
+    boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+    textAlign: 'center',
   },
-  link: {
-    color: '#4CAF50',
-    textDecoration: 'none',
+  couponCode: {
+    fontSize: '14px',  // Diminua o tamanho da fonte aqui
     fontWeight: 'bold',
+    marginBottom: '10px',
   },
+  couponDetail: {
+    fontSize: '14px',
+    marginBottom: '10px',
+  },
+  actionButton: {
+    padding: '10px 15px',
+    borderRadius: '5px',
+    color: '#FFF', // Cor do texto branca para ambos os botões
+    border: 'none',
+    cursor: 'pointer',
+  },  
   paginationContainer: {
     marginTop: '20px',
     display: 'flex',
@@ -389,52 +365,10 @@ const styles = {
     cursor: 'pointer',
     backgroundColor: '#FFF',
   },
-  actionButton: {
-    padding: '5px 10px',
-    borderRadius: '5px',
-    backgroundColor: '#4CAF50',
-    color: '#FFF',
-    border: 'none',
-    cursor: 'pointer',
-  },
-
-  // Media Queries para responsividade
-  '@media (max-width: 768px)': {
-    title: {
-      fontSize: '20px', // Ajuste de tamanho da fonte
-    },
-    filterContainer: {
-      flexDirection: 'column', // Coloca os filtros em coluna para melhor ajuste
-      gap: '10px',
-    },
-    filterInput: {
-      width: '100%', // Largura total em telas menores
-    },
-    filterSelect: {
-      width: '100%', // Largura total em telas menores
-    },
-    tableHeader: {
-      fontSize: '14px', // Reduz o tamanho do texto do cabeçalho da tabela
-    },
-    tableData: {
-      fontSize: '12px', // Reduz o tamanho do texto dos dados da tabela
-    },
-  },
-
-  '@media (max-width: 480px)': {
-    card: {
-      padding: '10px', // Reduz o padding em dispositivos menores
-    },
-    tableHeader: {
-      fontSize: '12px', // Ajuste adicional para telas muito pequenas
-    },
-    tableData: {
-      fontSize: '10px', // Ajuste adicional para telas muito pequenas
-    },
-    actionButton: {
-      fontSize: '12px', // Reduz o tamanho do botão
-      padding: '3px 5px', // Reduz o padding do botão
-    },
+  link: {
+    color: '#643528',  // Marrom claro  
+    textDecoration: 'none',
+    fontWeight: 'bold',
   },
 };
 
