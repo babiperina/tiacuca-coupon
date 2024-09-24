@@ -228,7 +228,7 @@ function CouponManager() {
               <p style={{ ...styles.couponDetail, color: getStatusLabel(coupon.status).color }}>
                 <strong>{getStatusLabel(coupon.status).label}</strong>
               </p>              
-              {coupon.status === 'active' ? (
+              {/* {coupon.status === 'active' ? (
                 <button style={{ ...styles.actionButton, backgroundColor: '#FF4C4C' }} onClick={() => handleUseCoupon(coupon.coupon_code)}>
                   Usar Cupom
                 </button>
@@ -236,7 +236,7 @@ function CouponManager() {
                 <button style={{ ...styles.actionButton, backgroundColor: '#007BFF' }} onClick={() => handleReleaseCoupon(coupon.coupon_code)}>
                   Liberar Cupom
                 </button>
-              )}
+              )} */}
             </div>
           ))}
         </div>
