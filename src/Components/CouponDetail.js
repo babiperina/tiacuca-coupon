@@ -10,7 +10,7 @@ function CouponDetail() {
   useEffect(() => {
     const fetchCoupon = async () => {
       try {
-        const response = await axios.get(`https://tiacuca-discount.onrender.com/api/coupons/${couponCode}`);
+        const response = await axios.get(`https://tiacuca-discount.onrender.com/api/public-coupons/${couponCode}`);
         setCoupon(response.data);
         setLoading(false);
       } catch (error) {
@@ -23,7 +23,11 @@ function CouponDetail() {
   }, [couponCode]);
 
   if (loading) {
-    return <div>Carregando detalhes do cupom...</div>;
+    return (
+      <div style={styles.loadingContainer}>
+        <div style={styles.spinner}></div>
+      </div>
+    );
   }
 
   if (!coupon) {
@@ -108,13 +112,36 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     height: '100vh',
+    padding: '10px',
+  },
+
+  loadingContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+  },
+
+  spinner: {
+    border: '16px solid #f3f3f3', /* Light grey */
+    borderRadius: '50%',
+    borderTop: '16px solid #3498db', /* Blue */
+    width: '120px',
+    height: '120px',
+    animation: 'spin 2s linear infinite',
+  },
+
+  '@keyframes spin': {
+    '0%': { transform: 'rotate(0deg)' },
+    '100%': { transform: 'rotate(360deg)' },
   },
 
   card: {
     backgroundColor: '#FFD447',
     padding: '10px',
     borderRadius: '10px',
-    width: '400px',
+    width: '100%',
+    maxWidth: '400px', 
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     textAlign: 'center',
   },
@@ -124,6 +151,7 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '0 10px 0 10px',
+    fontSize: '0.9rem', 
   },
 
   upContainer: {
@@ -132,7 +160,7 @@ const styles = {
   },
 
   h1Contact: {
-    fontSize: '1rem', // Aproximadamente 20px, mas escalável
+    fontSize: '1rem',
     color: '#4B1011',
   },
   discountInfo: {
@@ -143,13 +171,13 @@ const styles = {
     textAlign: 'center',
     padding: '20px 0 0 0',
     color: '#4B1011',
-    fontSize: '1.25rem', // Aproximadamente 20px, mas escalável
+    fontSize: '1.25rem',
   },
   discountSpanStyle: {
-    fontSize: '5rem', // Aproximadamente 72px, mas escalável
+    fontSize: '4rem',
     fontWeight: 'bold',
     color: '#FA5528',
-    lineHeight: '1', // Ajuste de altura da linha para que o número não fique muito espaçado
+    lineHeight: '1',
   },
 
   couponSection: {
@@ -190,7 +218,7 @@ const styles = {
     borderLeft: '1px solid #CDA300',
   },
 
-  couponStatus:{
+  couponStatus: {
     marginTop: '5px',
     fontSize: '0.7rem',
   },
@@ -208,7 +236,6 @@ const styles = {
     color: '#4B1011',
   },
 
-
   downContainer: {
     backgroundColor: '#FFF2E2',
     padding: '0 10px 20px 10px',
@@ -218,7 +245,7 @@ const styles = {
   whatsappButton: {
     display: 'inline-block',
     marginTop: '20px',
-    padding: '20px 15px',
+    padding: '15px 10px',
     backgroundColor: '#1FBC59',
     color: '#fff',
     textDecoration: 'none',
