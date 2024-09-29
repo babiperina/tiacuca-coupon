@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-import './Styles/Auth.css'; // Importando o CSS comum
+import './Styles/NewAuth.css'; // Importando o CSS comum
 
 const Login = () => {
-  const [email, setEmail] = useState('');
+  const [telefone, setTelefone] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  const [couponCode, setCouponCode] = useState(''); // Estado para o cupom
   const navigate = useNavigate();
 
   // Função para lidar com login
@@ -15,7 +14,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post('https://tiacuca-discount.onrender.com/api/auth/login', {
-        email,
+        telefone,
         password,
       });
       localStorage.setItem('token', response.data.token); // Salva o token
@@ -27,56 +26,50 @@ const Login = () => {
     }
   };
 
-  // Função para lidar com o envio do cupom
-  const handleCouponCheck = (e) => {
-    e.preventDefault();
-    if (couponCode.trim() !== '') {
-      navigate(`/cupom-da-muvuka/${couponCode}`); // Redireciona para a rota do cupom
-    }
-  };
-
   return (
-    <div className="auth-container">
-      <div>
-      <h2>Confira seu Cupom</h2>
-      {/* Formulário de verificação de cupom */}
-      <div className="coupon-check-container">
-        <form onSubmit={handleCouponCheck} className="coupon-form">
-          <input
-            type="text"
-            placeholder="Insira o código do cupom"
-            value={couponCode}
-            onChange={(e) => setCouponCode(e.target.value)}
-            className="auth-input"
-          />
-          <button type="submit" className="auth-button">Verificar Cupom</button>
-        </form>
+    <div className="parent-div">
+      <div className="content-div">
+        <div className='header'>
+          <div>
+            Tia Cuca
+          </div>
+          <div>
+            <Link to="/register">Criar uma conta</Link>
+          </div>
+        </div>
+        <div className='main-content'>
+          <form onSubmit={handleLogin}>
+            <h2>Faça seu login</h2>
+            <div>
+              <label>Telefone</label>
+              <input
+                type="text"
+                value={telefone}
+                onChange={(e) => setTelefone(e.target.value)}
+                required
+                placeholder="(99) 99999-9999"
+              />
+            </div>
+            <div>
+              <label>Senha</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                placeholder="Insira sua senha"
+              />
+            </div>
+            <button type="submit">Login</button>
+            {message && <p>{message}</p>}
+          </form>
+          <p>Não tem uma conta? <Link to="/register">Registrar</Link></p>
+        </div>
+        <div className='footer'>Teste</div>
       </div>
-      <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin} className="auth-form">
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="auth-input"
-        />
-        <input
-          type="password"
-          placeholder="Senha"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="auth-input"
-        />
-        <button type="submit" className="auth-button">Login</button>
-      </form>
-      <p className="auth-message">{message}</p>
-
-      <p className="auth-link">
-        Não tem uma conta? <Link to="/register">Registrar</Link>
-      </p>
-      </div>
+      <div className="banner-div">
+        <h1>Bem-vindo à Tia Cuca</h1>
+        <p>Cadastre-se para receber nossos descontos especiais!</p>
       </div>
     </div>
   );

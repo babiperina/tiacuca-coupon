@@ -1,0 +1,100 @@
+.parent-div {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    height: 100vh;
+    background-color: #FDFBFB;
+    color: #BC874A;
+}
+
+.content-div { 
+    grid-area: 1 / 1 / 6 / 3; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribui header no topo e footer embaixo */
+    align-items: stretch; /* Permite que o main-content ocupe todo o espaço */
+    height: 100%; /* Ocupa toda a altura disponível */
+}
+
+.header {
+    margin: 20px;
+    display: flex; /* Habilita o layout flex */
+    justify-content: space-between; /* Espaço entre os itens */
+    align-items: center; /* Alinha os itens verticalmente ao centro */
+    border-radius: 5px;
+}
+
+.main-content {
+    flex-grow: 1; /* Permite que o main ocupe o espaço restante */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.footer {
+    margin: 20px;
+    display: flex; /* Habilita o layout flex */
+    justify-content: center; /* Espaço entre os itens */
+    align-items: center; /* Alinha os itens verticalmente ao centro */
+    border-radius: 5px;
+}
+
+.banner-div { 
+    grid-area: 1 / 3 / 6 / 6; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #DCC1A2;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+}
+
+form h2 {
+    margin-bottom: 20px;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+form div label {
+    font-size: small;
+    font-weight: 500;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-sizing: border-box; /* Inclui padding e borda na largura total */
+}
+
+button {
+    padding: 10px;
+    background-color: #BC874A;
+    color: white;
+    border: 1px solid #FFCF3A;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #EEBC20;
+}
+
+p {
+    margin-top: 15px;
+}
