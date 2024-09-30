@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import CouponManager from "./CouponManager"; // Importa o componente do gerenciador de cupons
 import Login from "./Login"; // Importa o componente do gerenciador de cupons
-// import Amigos from "./Amigos"; // Importa o componente Amigos
-// import Setup from "./Setup"; // Importa o componente de configurações
+import Setup from "./Setup"; // Importa o componente de configurações
 import "./Styles/Home.css"; // Importa o arquivo CSS
+import AmigosManager from "./AmigosManager";
 
 function Home() {
   // Estado para controlar qual componente está ativo
@@ -13,13 +13,13 @@ function Home() {
   const renderContent = () => {
     switch (activeComponent) {
       case "amigos":
-        // return <Login />;
+        return <AmigosManager />;
       case "cupons":
         return <CouponManager />;
       case "configuracoes":
-        // return <Setup />;
+        return <Setup />;
       default:
-        return <CouponManager />; // Componente padrão
+        return <AmigosManager />; // Componente padrão
     }
   };
 
