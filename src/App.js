@@ -5,6 +5,7 @@ import CouponManager from './Components/CouponManager';
 import Login from './Components/Login';
 import Register from './Components/Register';
 import PrivateRoute from './Components/PrivateRoute';
+import Home from './Components/Home';
 import CouponDetail from './Components/CouponDetail';
 import { AuthProvider } from './Components/AuthContext';
 function App() {
@@ -16,6 +17,9 @@ function App() {
 
         {/* Rota pública para login */}
         <Route path="/" element={<Login />} />
+
+        {/* Rota protegida */}
+        <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
 
         {/* Rota protegida */}
         <Route path="/coupons" element={<PrivateRoute><CouponManager /></PrivateRoute>} />

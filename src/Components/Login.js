@@ -19,7 +19,7 @@ const Login = () => {
       });
       localStorage.setItem('token', response.data.token); // Salva o token
       setMessage('Login bem-sucedido!');
-      navigate('/coupons'); // Redireciona para a página protegida
+      navigate('/home'); // Redireciona para a página protegida
     } catch (error) {
       console.error('Erro ao fazer login:', error);
       setMessage('Erro ao fazer login. Verifique suas credenciais.');
