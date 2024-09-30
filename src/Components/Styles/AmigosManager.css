@@ -1,0 +1,116 @@
+/* Container principal */
+.amigos-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+/* Informações principais dos pontos */
+.main-info {
+  text-align: center;
+  background-color: #fff2e2;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+}
+
+.main-info h1 {
+  font-size: 24px;
+  color: #643528;
+}
+
+.points-box {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.points-box h2 {
+  font-size: 36px;
+  color: #FF6347;
+}
+
+/* Botão para expandir/colapsar os pontos que expiram */
+.toggle-expiring {
+  background-color: #FF6347;
+  color: #FFF;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.toggle-expiring:hover {
+  background-color: #FF7F50;
+}
+
+/* Seção de pontos que expiram */
+.expiring-section {
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.expiring-points {
+  margin-top: 20px;
+}
+
+.expiring-points h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+table th, table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.expiring {
+  color: #FF6347;
+}
+
+/* Histórico de Pontos */
+.points-history {
+  width: 100%;
+  max-width: 800px;
+}
+
+.points-history h2 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+table td.positive {
+  color: #28a745;
+}
+
+table td.negative {
+  color: #dc3545;
+}
+
+table tbody tr:hover {
+  background-color: #f2f2f2;
+}
