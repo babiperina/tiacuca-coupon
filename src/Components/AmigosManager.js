@@ -6,9 +6,9 @@ function AmigosManager() {
   const [pointsHistory, setPointsHistory] = useState([]);
   const [expiringPoints, setExpiringPoints] = useState([]);
   const [showExpiring, setShowExpiring] = useState(false); // Estado para expandir a seção de expiração
+  const [expiringSoon, setExpiringSoon] = useState(false); // Estado para notificação
 
   useEffect(() => {
-    // Simulação de dados (substitua pela lógica real de busca)
     const fetchPoints = async () => {
       const userPoints = 125; // Exemplo de pontos
       setPoints(userPoints);
@@ -32,6 +32,17 @@ function AmigosManager() {
         { date: '2024-10-05', points: 50 },
       ];
       setExpiringPoints(expiring);
+
+      // Verifica se há pontos expirando nos próximos 7 dias
+      const today = new Date();
+      const soon = expiring.some(entry => {
+        const expDate = new Date(entry.date);
+        const timeDiff = expDate - today;
+        const daysToExpire = timeDiff / (1000 * 3600 * 24);
+        return daysToExpire <= 7; // Notificar se faltar 7 dias ou menos para expirar
+      });
+
+      setExpiringSoon(soon); // Atualiza estado de notificação
     };
 
     fetchPoints();
@@ -44,12 +55,19 @@ function AmigosManager() {
   };
 
   return (
-    <div className="amigos-container">
+    <div className="AmigosManager-container">
+      {/* Notificação de pontos expirando */}
+      {expiringSoon && (
+        <div className="notification-bar">
+          <p>⚠️ Você tem pontos que irão expirar em breve! Não perca a chance de usá-los.</p>
+        </div>
+      )}
+
       <div className="main-info">
         <h1>Seus Pontos</h1>
         <div className="points-box">
           <p>Total de Pontos:</p>
-          <h2>R${points}</h2>
+          <h2>{points}</h2>
         </div>
       </div>
 
