@@ -6,6 +6,7 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import PrivateRoute from './Components/PrivateRoute';
 import CouponDetail from './Components/CouponDetail';
+import RoleManager from './Components/RoleManager';
 import { AuthProvider } from './Components/AuthContext';
 function App() {
   return (
@@ -22,6 +23,10 @@ function App() {
         
         {/* Página de um cupom específico */}
         <Route path="/cupom-da-muvuka/:couponCode" element={<CouponDetail />} />
+
+        {/* Gerenciamento de papeis */}
+        <Route path="/roles" element={<PrivateRoute><RoleManager /></PrivateRoute>} />
+        
         {/* Outras rotas podem ser adicionadas aqui */}
       </Routes>
     </AuthProvider>
