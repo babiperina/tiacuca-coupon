@@ -55,7 +55,7 @@ function AmigosManager() {
   };
 
   return (
-    <div className="AmigosManager-container">
+    <div className="amigos-container">
       {/* Notificação de pontos expirando */}
       {expiringSoon && (
         <div className="notification-bar">

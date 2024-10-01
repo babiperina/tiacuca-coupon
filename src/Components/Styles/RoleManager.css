@@ -1,121 +1,114 @@
 /* Container principal */
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-    background-color: #f9f9f9;
-  }
-  
-  /* Card de informações */
-  .card {
-    background-color: #fff2e2;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 800px;
-  }
-  
-  /* Cabeçalho */
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .title {
-    text-align: center;
-    font-size: 24px;
-    color: #333;
-  }
-  
-  .logoutButton {
-    padding: 10px 15px;
-    border-radius: 5px;
-    background-color: #ff4c4c;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-  
-  /* Contagem de usuários */
-  .usersCount {
-    text-align: right;
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #666;
-  }
-  
-  /* Tabela de usuários */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  table th, table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-  }
-  
-  table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-  }
-  
-  table td select {
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  /* Botão Salvar */
-  button {
-    padding: 8px 12px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    background-color: #28a745;
-    color: white;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-  }
-  
-  /* Estado desabilitado do botão Salvar */
-  button:disabled {
-    background-color: grey;
-    cursor: not-allowed;
-  }
-  
-  /* Efeito hover para o botão habilitado */
-  button:not(:disabled):hover {
-    background-color: #218838;
-  }
-  
-  /* Container de carregamento */
-  .loadingContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  /* Spinner de carregamento */
-  .spinner {
-    border: 16px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 16px solid #3498db;
-    width: 120px;
-    height: 120px;
-    animation: spin 2s linear infinite;
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+/* Cabeçalho */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.title {
+  font-size: 24px;
+  color: #333;
+}
+
+.logoutButton {
+  padding: 10px 15px;
+  border-radius: 5px;
+  background-color: #ff4c4c;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+/* Contagem de usuários */
+.usersCount {
+  text-align: right;
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #666;
+  width: 100%;
+}
+
+/* Tabela de usuários */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th,
+table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+table td select {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Botão Salvar */
+button {
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  background-color: #28a745;
+  color: white;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+/* Estado desabilitado do botão Salvar */
+button:disabled {
+  background-color: grey;
+  cursor: not-allowed;
+}
+
+/* Efeito hover para o botão habilitado */
+button:not(:disabled):hover {
+  background-color: #218838;
+}
+
+/* Container de carregamento */
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+/* Spinner de carregamento */
+.spinner {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
