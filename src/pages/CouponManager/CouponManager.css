@@ -1,0 +1,121 @@
+/* CouponManager.css */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  .title {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .logoutButton {
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #FF4C4C;
+    color: #FFF;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .coupon-item {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+  }
+  
+  .coupon-code {
+    font-size: 16px;
+    font-weight: bold;
+    color: #643528;
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+  
+  .coupon-detail {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .coupon-status {
+    font-size: 14px;
+  }
+  
+  .coupon-status.active {
+    color: #4CAF50;
+  }
+  
+  .coupon-status.used {
+    color: #808080;
+  }
+  
+  .coupon-status.expired {
+    color: #FF4C4C;
+  }
+  
+  .filterContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .filterInput, .filterSelect {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    flex: 1;
+  }
+  
+  .paginationContainer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .paginationList {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+  }
+  
+  .paginationItem {
+    margin: 0 5px;
+  }
+  
+  .paginationButton {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #FFF;
+  }
+  
+  .spinner {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
