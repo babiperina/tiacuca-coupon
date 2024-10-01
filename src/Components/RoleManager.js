@@ -29,7 +29,7 @@ function RoleManager() {
       const authToken = localStorage.getItem('token'); // Substitua pelo seu token de autenticação
 
       try {
-        const response = await axios.get('https://tiacuca-discount.onrender.com/api/auth/users', {
+        const response = await axios.get('https://tiacuca-discount.onrender.com/api/users', {
           headers: {
             Authorization: `Bearer ${authToken}`, // Passando o token no cabeçalho
           },
@@ -74,18 +74,19 @@ function RoleManager() {
             {users.map((user) => {
               const createdAt = new Date(user.created_at).toLocaleString('pt-BR');
               const updatedAt = new Date(user.updated_at).toLocaleString('pt-BR');
-              
+              console.log(user.roles)
+
               return (
                 <tr key={user.id}>
                   <td>{user.telefone}</td>
                   <td>
-                  <select value="teste">
-                    {roles.map((role) => (
-                      <option key={role.id} value={role.name}>
-                        {role.name}
-                      </option>
-                    ))}
-                  </select>
+                    <select>
+                      {roles.map((role) => (
+                        <option key={role.id} value={user.roles[0] === role.role_name && user.roles[0]}>
+                          {user.roles[0] === role.role_name && user.roles[0]}
+                        </option>
+                      ))}
+                    </select>
                   </td>
                   <td>{createdAt}</td>
                   <td>{updatedAt}</td>
