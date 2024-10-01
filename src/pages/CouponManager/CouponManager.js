@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './Styles/CouponManager.css'; // Importando o CSS externo
+import './CouponManager.css'; // Importando o CSS externo
 
 function CouponManager() {
   const [coupons, setCoupons] = useState([]);

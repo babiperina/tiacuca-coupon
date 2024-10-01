@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import './Styles/RoleManager.css'; // Importa o arquivo CSS externo
+import './RoleManager.css'; // Importa o arquivo CSS externo
 
 function RoleManager() {
   const [roles, setRoles] = useState([]);

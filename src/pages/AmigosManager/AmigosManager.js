@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Styles/AmigosManager.css'; // Importa o arquivo CSS
+import './AmigosManager.css'; // Importa o arquivo CSS
 
 function AmigosManager() {
   const [points, setPoints] = useState(0);

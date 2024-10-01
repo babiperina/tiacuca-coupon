@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Styles/Setup.css'; // Importa o arquivo CSS
+import './Setup.css'; // Importa o arquivo CSS
 
 function Setup() {
   // Estado para armazenar os valores dos inputs
