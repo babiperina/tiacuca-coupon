@@ -1,4 +1,3 @@
-
 /* Container principal */
 .container {
     display: flex;
@@ -42,6 +41,7 @@
     cursor: pointer;
   }
   
+  /* Contagem de usuários */
   .usersCount {
     text-align: right;
     font-size: 18px;
@@ -71,6 +71,29 @@
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #ccc;
+  }
+  
+  /* Botão Salvar */
+  button {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: #28a745;
+    color: white;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Estado desabilitado do botão Salvar */
+  button:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+  }
+  
+  /* Efeito hover para o botão habilitado */
+  button:not(:disabled):hover {
+    background-color: #218838;
   }
   
   /* Container de carregamento */

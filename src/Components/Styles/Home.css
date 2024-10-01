@@ -83,7 +83,6 @@
   /* Área de conteúdo - 4/5 da largura da tela */
   .content {
     width: 80%; /* O restante da tela (4/5) */
-    padding: 20px;
     background-color: #f9f9f9;
     overflow-y: auto; /* Caso o conteúdo seja maior que a tela */
   }

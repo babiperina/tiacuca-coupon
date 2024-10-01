@@ -67,7 +67,7 @@ function AmigosManager() {
         <h1>Seus Pontos</h1>
         <div className="points-box">
           <p>Total de Pontos:</p>
-          <h2>{points}</h2>
+          <h2>R${points},00</h2>
         </div>
       </div>
 
