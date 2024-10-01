@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import CouponManager from "./CouponManager"; // Importa o componente do gerenciador de cupons
-import Login from "./Login"; // Importa o componente do gerenciador de cupons
-import Setup from "./Setup"; // Importa o componente de configurações
-import "./Styles/Home.css"; // Importa o arquivo CSS
-import AmigosManager from "./AmigosManager";
+import CouponManager from "../CouponManager/CouponManager"; // Importa o componente do gerenciador de cupons
+import Setup from "../Setup/Setup"; // Importa o componente de configurações
+import "./Home.css"; // Importa o arquivo CSS
+import AmigosManager from "../AmigosManager/AmigosManager";
+import RoleManager from "../RoleManager/RoleManager";
 
 function Home() {
   // Estado para controlar qual componente está ativo
@@ -16,6 +16,8 @@ function Home() {
         return <AmigosManager />;
       case "cupons":
         return <CouponManager />;
+      case "users":
+        return <RoleManager />;
       case "configuracoes":
         return <Setup />;
       default:
@@ -49,6 +51,11 @@ function Home() {
                 <li>
                   <button onClick={() => setActiveComponent("cupons")}>
                     Meus Cupons
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => setActiveComponent("users")}>
+                    Gestor de Usuários
                   </button>
                 </li>
               </ul>
