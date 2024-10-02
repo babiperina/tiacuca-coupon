@@ -1,0 +1,148 @@
+/* Container principal */
+.amigos-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  justify-content: start;
+  margin: 40px;
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Notificação de pontos expirando */
+.notification-bar {
+  width: 100%;
+  background-color: #ff9f43;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.notification-bar p {
+  margin: 0;
+  font-weight: bold;
+}
+
+/* Informações principais dos pontos */
+.main-info {
+  text-align: center;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+}
+
+.main-info h1 {
+  font-size: 28px;
+  color: #5c3d2e;
+}
+
+.points-box {
+  margin-top: 20px;
+  font-size: 22px;
+  background-color: #fff7e1;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.points-box h2 {
+  font-size: 48px;
+  color: #ff6347;
+  margin: 0;
+}
+
+/* Botão para expandir/colapsar os pontos que expiram */
+.toggle-expiring {
+  background-color: #ff6347;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+}
+
+.toggle-expiring:hover {
+  background-color: #ff7f50;
+}
+
+/* Seção de pontos que expiram */
+.expiring-section {
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.expiring-points {
+  margin-top: 20px;
+}
+
+.expiring-points h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+table th, table td {
+  padding: 15px 20px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  color: #5c3d2e;
+}
+
+table td.positive {
+  color: #28a745;
+}
+
+table td.negative {
+  color: #dc3545;
+}
+
+table td.expiring {
+  color: #ff6347;
+  font-weight: bold;
+}
+
+table tbody tr:hover {
+  background-color: #f2f2f2;
+}
+
+/* Histórico de Pontos */
+.points-history {
+  width: 100%;
+  max-width: 800px;
+}
+
+.points-history h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}

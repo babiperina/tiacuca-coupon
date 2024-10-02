@@ -1,0 +1,75 @@
+/* Container principal */
+.setup-container {
+  padding: 20px;
+}
+
+.setup-container h1 {
+  font-size: 28px;
+  text-align: center;
+  color: #5c3d2e;
+  margin-bottom: 30px;
+}
+
+.setup-section {
+  margin-bottom: 30px;
+}
+
+.setup-section h2 {
+  font-size: 22px;
+  color: #5c3d2e;
+  margin-bottom: 20px;
+}
+
+/* Inputs */
+.setup-section label {
+  display: block;
+  margin-bottom: 15px;
+}
+
+.setup-section input[type="text"],
+.setup-section input[type="email"],
+.setup-section input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.setup-section input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+/* Botão de salvar */
+.save-button {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background-color: #ff6347;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.save-button:hover {
+  background-color: #ff7f50;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .setup-container {
+    padding: 15px;
+  }
+
+  .setup-container h1 {
+    font-size: 24px;
+  }
+
+  .setup-section h2 {
+    font-size: 20px;
+  }
+}

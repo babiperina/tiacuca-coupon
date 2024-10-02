@@ -1,0 +1,152 @@
+.parent-div {
+    display: grid;
+    grid-template-columns: 40% 60%; /* 40% para o conteúdo e 60% para o banner */
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    height: 100vh;
+    background-color: #FDFBFB;
+    color: #BC874A;
+}
+
+/* Ajustes para dispositivos móveis */
+@media (max-width: 768px) {
+    .parent-div {
+        grid-template-columns: 1fr; /* Empilha o conteúdo e o banner */
+        grid-template-rows: auto auto;
+        grid-template-areas: 
+          "content-div"
+          "banner-div";
+    }
+
+    .content-div {
+        grid-area: content-div;
+        height: auto;
+    }
+
+    .banner-div {
+        grid-area: banner-div;
+        padding: 15px;
+    }
+}
+
+.content-div { 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    height: 100%;
+}
+
+.header {
+    margin: 20px;
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center; */
+    border-radius: 5px;
+}
+
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.footer {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.banner-div { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #DCC1A2;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+}
+
+form h2 {
+    margin-bottom: 20px;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+form div label {
+    font-size: small;
+    font-weight: 500;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-sizing: border-box; /* Inclui padding e borda na largura total */
+}
+
+button {
+    padding: 10px;
+    background-color: #BC874A;
+    color: white;
+    border: 1px solid #FFCF3A;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #EEBC20;
+}
+
+p {
+    margin-top: 15px;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .content-div {
+        padding: 10px;
+    }
+
+    form {
+        max-width: 100%;
+    }
+
+    .header, .footer {
+        margin: 10px;
+    }
+
+    button {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .banner-div {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .banner-div h1 {
+        font-size: 24px;
+    }
+
+    .banner-div p {
+        font-size: 14px;
+    }
+}
