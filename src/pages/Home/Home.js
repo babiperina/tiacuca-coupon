@@ -7,7 +7,9 @@ import RoleManager from "../RoleManager/RoleManager";
 
 function Home() {
   // Estado para controlar qual componente está ativo
-  const [activeComponent, setActiveComponent] = useState("amigos");
+  const [activeComponent, setActiveComponent] = useState(
+    localStorage.getItem('activeComponent') || 'amigos'
+  );
   const [isUser, setIsUser] = useState(false);
 
   // Função para renderizar o componente ativo
@@ -25,6 +27,11 @@ function Home() {
         return <AmigosManager />; // Componente padrão
     }
   };
+
+  // Atualiza o activeComponent no localStorage sempre que ele mudar
+  useEffect(() => {
+    localStorage.setItem('activeComponent', activeComponent);
+  }, [activeComponent]);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
