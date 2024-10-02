@@ -18,6 +18,7 @@ const Login = () => {
         password,
       });
       localStorage.setItem('token', response.data.token); // Salva o token
+      localStorage.setItem('user', JSON.stringify(response.data.user));
       setMessage('Login bem-sucedido!');
       navigate('/home'); // Redireciona para a página protegida
     } catch (error) {
