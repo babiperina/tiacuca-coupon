@@ -28,13 +28,9 @@ function Home() {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
-    console.log(user.roles.length === 1);
-    console.log(user.roles[0] === 'users');
-    if (user.roles.length === 1 && user.roles[0] === 'users') {
-      console.log('texto aleatório')
-       setIsUser(true); 
-      };
-    console.log(isUser)
+    if (user?.roles?.length === 1 && user.roles[0] === 'users') { 
+      setIsUser(true); 
+    };
   }, []);
 
 
