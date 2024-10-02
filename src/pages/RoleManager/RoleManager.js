@@ -90,9 +90,10 @@ function RoleManager() {
     const newRole = modifiedUsers[userId];
     const authToken = localStorage.getItem("token");
 
+
     try {
       const response = await axios.put(
-        `https://tiacuca-discount.onrender.com/api/users/${userId}/role`,
+        `https://tiacuca-discount.onrender.com/api/users/${userId}`,
         { role: newRole },
         {
           headers: {
