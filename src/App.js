@@ -1,13 +1,16 @@
 // App.js
-import React from 'react';
-import { Route, Routes } from 'react-router-dom'; // Sem BrowserRouter aqui
-import CouponManager from './Components/CouponManager';
-import Login from './Components/Login';
-import Register from './Components/Register';
-import PrivateRoute from './Components/PrivateRoute';
-import CouponDetail from './Components/CouponDetail';
-import RoleManager from './Components/RoleManager';
-import { AuthProvider } from './Components/AuthContext';
+import React from "react";
+import { Route, Routes } from "react-router-dom"; // Sem BrowserRouter aqui
+import CouponManager from "./pages/CouponManager/CouponManager";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
+import PrivateRoute from "./routes/PrivateRoute";
+import Home from "./pages/Home/Home";
+import CouponDetail from "./pages/CouponDetail/CouponDetail";
+import RoleManager from "./pages/RoleManager/RoleManager";
+import { AuthProvider } from "./contexts/AuthContext";
+
+
 function App() {
   return (
     <AuthProvider>
@@ -19,14 +22,38 @@ function App() {
         <Route path="/" element={<Login />} />
 
         {/* Rota protegida */}
-        <Route path="/coupons" element={<PrivateRoute><CouponManager /></PrivateRoute>} />
-        
+        <Route
+          path="/home"
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        />
+
+        {/* Rota protegida */}
+        <Route
+          path="/coupons"
+          element={
+            <PrivateRoute>
+              <CouponManager />
+            </PrivateRoute>
+          }
+        />
+
         {/* Página de um cupom específico */}
         <Route path="/cupom-da-muvuka/:couponCode" element={<CouponDetail />} />
 
         {/* Gerenciamento de papeis */}
-        <Route path="/roles" element={<PrivateRoute><RoleManager /></PrivateRoute>} />
-        
+        <Route
+          path="/roles"
+          element={
+            <PrivateRoute>
+              <RoleManager />
+            </PrivateRoute>
+          }
+        />
+
         {/* Outras rotas podem ser adicionadas aqui */}
       </Routes>
     </AuthProvider>

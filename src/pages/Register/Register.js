@@ -1,28 +1,25 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom';
-import './Styles/NewAuth.css'; // Importando o CSS comum
+import { Link } from 'react-router-dom';
+import '../Login/Login.css'; // Importando o CSS
 
-const Login = () => {
+const Register = () => {
   const [telefone, setTelefone] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
-  const navigate = useNavigate();
 
-  // Função para lidar com login
-  const handleLogin = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://tiacuca-discount.onrender.com/api/auth/login', {
+      const response = await axios.post('https://tiacuca-discount.onrender.com/api/auth/register', {
         telefone,
         password,
       });
-      localStorage.setItem('token', response.data.token); // Salva o token
-      setMessage('Login bem-sucedido!');
-      navigate('/coupons'); // Redireciona para a página protegida
+      setMessage(response.data.message);
     } catch (error) {
-      console.error('Erro ao fazer login:', error);
-      setMessage('Erro ao fazer login. Verifique suas credenciais.');
+      console.error('Erro ao registrar:', error);
+      setMessage('Erro ao registrar. Tente novamente.');
     }
   };
 
@@ -34,12 +31,12 @@ const Login = () => {
             Tia Cuca
           </div>
           <div>
-            <Link to="/register">Criar uma conta</Link>
+          <Link to="/">Fazer Login</Link>
           </div>
         </div>
         <div className='main-content'>
-          <form onSubmit={handleLogin}>
-            <h2>Faça seu login</h2>
+          <form onSubmit={handleRegister}>
+            <h2>Crie sua conta</h2>
             <div>
               <label>Telefone</label>
               <input
@@ -60,10 +57,20 @@ const Login = () => {
                 placeholder="Insira sua senha"
               />
             </div>
-            <button type="submit">Login</button>
+            <div>
+              <label>Confirmação de senha</label>
+              <input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+                placeholder="Confirme sua senha"
+              />
+            </div>
+            <button type="submit">Cadastrar</button>
             {message && <p>{message}</p>}
           </form>
-          <p>Não tem uma conta? <Link to="/register">Registrar</Link></p>
+          <p>Já possui uma conta? <Link to="/">Login</Link></p>
         </div>
         <div className='footer'>Teste</div>
       </div>
@@ -75,4 +82,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
