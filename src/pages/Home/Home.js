@@ -57,17 +57,18 @@ function Home() {
                     Amigos da Tia Cuca
                   </button>
                 </li>
-                 {isUser && 
-                  <li>
+                 {!isUser && 
+                  <><li>
                     <button onClick={() => setActiveComponent("cupons")}>
                       Gestor de Cupons
                     </button>
-                  </li>}
-                <li>
-                  <button onClick={() => setActiveComponent("users")}>
-                    Gestor de Usuários
-                  </button>
-                </li>
+                  </li>                  
+                  <li>
+                    <button onClick={() => setActiveComponent("users")}>
+                      Gestor de Usuários
+                    </button>
+                  </li></>
+                }
               </ul>
             </nav>
           </div>
