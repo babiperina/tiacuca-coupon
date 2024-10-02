@@ -39,6 +39,7 @@ function RoleManager() {
             },
           }
         );
+        console.log(response.data[0]._id);
         setUsers(response.data);
         setLoading(false);
       } catch (error) {
@@ -52,16 +53,37 @@ function RoleManager() {
   }, []);
 
   const handleRoleChange = (userId, newRole) => {
-    setUsers((prevUsers) =>
-      prevUsers.map((user) =>
-        user.id === userId ? { ...user, newRole } : user
-      )
-    );
+    // Log do ID do usuário e do novo papel
+    console.log("Alterando role do usuário:", userId, "para:", newRole);
 
-    setModifiedUsers((prevModifiedUsers) => ({
-      ...prevModifiedUsers,
-      [userId]: newRole,
-    }));
+    setUsers((prevUsers) => {
+      // Log da lista de usuários antes da alteração
+      console.log("Lista de usuários antes da alteração:", prevUsers);
+      
+      const updatedUsers = prevUsers.map((user) =>
+        user._id === userId ? { ...user, newRole } : user
+      );
+
+      // Log da lista de usuários depois da alteração
+      console.log("Lista de usuários após a alteração:", updatedUsers);
+
+      return updatedUsers;
+    });
+
+    setModifiedUsers((prevModifiedUsers) => {
+      // Log das modificações anteriores
+      console.log("Usuários modificados anteriormente:", prevModifiedUsers);
+
+      const updatedModifiedUsers = {
+        ...prevModifiedUsers,
+        [userId]: newRole,
+      };
+
+      // Log das modificações após a alteração
+      console.log("Usuários modificados após a alteração:", updatedModifiedUsers);
+
+      return updatedModifiedUsers;
+    });
   };
 
   const saveUserRole = async (userId) => {
@@ -90,6 +112,11 @@ function RoleManager() {
       console.error("Erro ao salvar a role:", error);
     }
   };
+  
+  const handleLogout = () => {
+    localStorage.removeItem('token'); 
+    window.location.href = '/#';
+  };
 
   if (loading) {
     return (
@@ -103,7 +130,7 @@ function RoleManager() {
     <div className="container">
       <div className="header">
         <h1 className="title">Lista de Usuários</h1>
-        <button className="logoutButton">Logout</button>
+        <button className="logoutButton" onClick={handleLogout}>Logout</button>
       </div>
       <div className="usersCount">Total de Usuários: {users.length}</div>
       <table>
@@ -122,12 +149,12 @@ function RoleManager() {
             const updatedAt = new Date(user.updated_at).toLocaleString("pt-BR");
 
             return (
-              <tr key={user.id}>
+              <tr key={user._id}>
                 <td>{user.telefone}</td>
                 <td>
                   <select
                     value={user.newRole || user.roles[0]}
-                    onChange={(e) => handleRoleChange(user.id, e.target.value)}
+                    onChange={(e) => handleRoleChange(user._id, e.target.value)}
                   >
                     {roles.map((role) => (
                       <option key={role.id} value={role.role_name}>
@@ -140,8 +167,8 @@ function RoleManager() {
                 <td>{updatedAt}</td>
                 <td>
                   <button
-                    onClick={() => saveUserRole(user.id)}
-                    disabled={!(modifiedUsers[user.id] && modifiedUsers[user.id] !== user.roles[0])}
+                    onClick={() => saveUserRole(user._id)}
+                    disabled={!(modifiedUsers[user._id] && modifiedUsers[user._id] !== user.roles[0])}
                   >
                     Salvar
                   </button>

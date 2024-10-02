@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CouponManager from "../CouponManager/CouponManager"; // Importa o componente do gerenciador de cupons
 import Setup from "../Setup/Setup"; // Importa o componente de configurações
 import "./Home.css"; // Importa o arquivo CSS
@@ -7,7 +7,10 @@ import RoleManager from "../RoleManager/RoleManager";
 
 function Home() {
   // Estado para controlar qual componente está ativo
-  const [activeComponent, setActiveComponent] = useState("amigos");
+  const [activeComponent, setActiveComponent] = useState(
+    localStorage.getItem('activeComponent') || 'amigos'
+  );
+  const [isUser, setIsUser] = useState(false);
 
   // Função para renderizar o componente ativo
   const renderContent = () => {
@@ -24,6 +27,19 @@ function Home() {
         return <AmigosManager />; // Componente padrão
     }
   };
+
+  // Atualiza o activeComponent no localStorage sempre que ele mudar
+  useEffect(() => {
+    localStorage.setItem('activeComponent', activeComponent);
+  }, [activeComponent]);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user?.roles?.length === 1 && user.roles[0] === 'users') { 
+      setIsUser(true); 
+    };
+  }, []);
+
 
   return (
     <div className="home-container">
@@ -48,16 +64,18 @@ function Home() {
                     Amigos da Tia Cuca
                   </button>
                 </li>
-                <li>
-                  <button onClick={() => setActiveComponent("cupons")}>
-                    Gestor de Cupons
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => setActiveComponent("users")}>
-                    Gestor de Usuários
-                  </button>
-                </li>
+                 {!isUser && 
+                  <><li>
+                    <button onClick={() => setActiveComponent("cupons")}>
+                      Gestor de Cupons
+                    </button>
+                  </li>                  
+                  <li>
+                    <button onClick={() => setActiveComponent("users")}>
+                      Gestor de Usuários
+                    </button>
+                  </li></>
+                }
               </ul>
             </nav>
           </div>
