@@ -90,6 +90,11 @@ function RoleManager() {
       console.error("Erro ao salvar a role:", error);
     }
   };
+  
+  const handleLogout = () => {
+    localStorage.removeItem('token'); 
+    window.location.href = '/#';
+  };
 
   if (loading) {
     return (
@@ -103,7 +108,7 @@ function RoleManager() {
     <div className="container">
       <div className="header">
         <h1 className="title">Lista de Usuários</h1>
-        <button className="logoutButton">Logout</button>
+        <button className="logoutButton" onClick={handleLogout}>Logout</button>
       </div>
       <div className="usersCount">Total de Usuários: {users.length}</div>
       <table>
