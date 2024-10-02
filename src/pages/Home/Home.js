@@ -50,7 +50,7 @@ function Home() {
                 </li>
                 <li>
                   <button onClick={() => setActiveComponent("cupons")}>
-                    Meus Cupons
+                    Gestor de Cupons
                   </button>
                 </li>
                 <li>
@@ -78,7 +78,7 @@ function Home() {
           {/* Informações do usuário no rodapé */}
           <div className="sidebar-footer">
             <div>
-              <img src="logo192.png" alt="Tia Cuca" />
+              <img src="profilepic.png" alt="Tia Cuca" />
             </div>
             <div>
               <p>Bárbara Perina</p>

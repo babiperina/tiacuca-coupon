@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './Register.css'; // Importando o CSS
+import '../Login/Login.css'; // Importando o CSS
 
 const Register = () => {
   const [telefone, setTelefone] = useState('');
